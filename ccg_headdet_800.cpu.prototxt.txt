@@ -29,13 +29,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA1"
+  type: "ReLU"
+  bottom: "BatchNorm1"
+  top: "BatchNormA1"
 }
 layer {
   name: "Convolution2"
   type: "Convolution"
-  bottom: "BatchNorm1"
+  bottom: "BatchNormA1"
   top: "BatchNorm2"
   convolution_param {
     num_output: 64
@@ -49,13 +54,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA2"
+  type: "ReLU"
+  bottom: "BatchNorm2"
+  top: "BatchNormA2"
 }
 layer {
   name: "Convolution3"
   type: "Convolution"
-  bottom: "BatchNorm2"
+  bottom: "BatchNormA2"
   top: "BatchNorm3"
   convolution_param {
     num_output: 128
@@ -69,13 +79,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA3"
+  type: "ReLU"
+  bottom: "BatchNorm3"
+  top: "BatchNormA3"
 }
 layer {
   name: "Pooling1"
   type: "Pooling"
-  bottom: "BatchNorm3"
+  bottom: "BatchNormA3"
   top: "Pooling1"
   pooling_param {
     pool: MAX
@@ -131,13 +146,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA4"
+  type: "ReLU"
+  bottom: "BatchNorm5"
+  top: "BatchNormA5"
 }
 layer {
   name: "Convolution5"
   type: "Convolution"
-  bottom: "BatchNorm5"
+  bottom: "BatchNormA5"
   top: "Convolution5"
   convolution_param {
     num_output: 16
@@ -211,13 +231,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA5"
+  type: "ReLU"
+  bottom: "BatchNorm7"
+  top: "BatchNormA7"
 }
 layer {
   name: "Convolution7"
   type: "Convolution"
-  bottom: "BatchNorm7"
+  bottom: "BatchNormA7"
   top: "Convolution7"
   convolution_param {
     num_output: 16
@@ -291,13 +316,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA6"
+  type: "ReLU"
+  bottom: "BatchNorm9"
+  top: "BatchNormA9"
 }
 layer {
   name: "Convolution9"
   type: "Convolution"
-  bottom: "BatchNorm9"
+  bottom: "BatchNormA9"
   top: "Convolution9"
   convolution_param {
     num_output: 16
@@ -371,13 +401,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA7"
+  type: "ReLU"
+  bottom: "BatchNorm11"
+  top: "BatchNormA11"
 }
 layer {
   name: "Convolution11"
   type: "Convolution"
-  bottom: "BatchNorm11"
+  bottom: "BatchNormA11"
   top: "Convolution11"
   convolution_param {
     num_output: 16
@@ -451,13 +486,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA8"
+  type: "ReLU"
+  bottom: "BatchNorm13"
+  top: "BatchNormA13"
 }
 layer {
   name: "Convolution13"
   type: "Convolution"
-  bottom: "BatchNorm13"
+  bottom: "BatchNormA13"
   top: "Convolution13"
   convolution_param {
     num_output: 16
@@ -531,13 +571,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA9"
+  type: "ReLU"
+  bottom: "BatchNorm15"
+  top: "BatchNormA15"
 }
 layer {
   name: "Convolution15"
   type: "Convolution"
-  bottom: "BatchNorm15"
+  bottom: "BatchNormA15"
   top: "Convolution15"
   convolution_param {
     num_output: 16
@@ -672,13 +717,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA10"
+  type: "ReLU"
+  bottom: "BatchNorm18"
+  top: "BatchNormA18"
 }
 layer {
   name: "Convolution18"
   type: "Convolution"
-  bottom: "BatchNorm18"
+  bottom: "BatchNormA18"
   top: "Convolution18"
   convolution_param {
     num_output: 16
@@ -752,13 +802,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA11"
+  type: "ReLU"
+  bottom: "BatchNorm20"
+  top: "BatchNormA20"
 }
 layer {
   name: "Convolution20"
   type: "Convolution"
-  bottom: "BatchNorm20"
+  bottom: "BatchNormA20"
   top: "Convolution20"
   convolution_param {
     num_output: 16
@@ -832,13 +887,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA12"
+  type: "ReLU"
+  bottom: "BatchNorm22"
+  top: "BatchNormA22"
 }
 layer {
   name: "Convolution22"
   type: "Convolution"
-  bottom: "BatchNorm22"
+  bottom: "BatchNormA22"
   top: "Convolution22"
   convolution_param {
     num_output: 16
@@ -912,13 +972,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA13"
+  type: "ReLU"
+  bottom: "BatchNorm24"
+  top: "BatchNormA24"
 }
 layer {
   name: "Convolution24"
   type: "Convolution"
-  bottom: "BatchNorm24"
+  bottom: "BatchNormA24"
   top: "Convolution24"
   convolution_param {
     num_output: 16
@@ -992,13 +1057,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA14"
+  type: "ReLU"
+  bottom: "BatchNorm26"
+  top: "BatchNormA26"
 }
 layer {
   name: "Convolution26"
   type: "Convolution"
-  bottom: "BatchNorm26"
+  bottom: "BatchNormA26"
   top: "Convolution26"
   convolution_param {
     num_output: 16
@@ -1072,13 +1142,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA15"
+  type: "ReLU"
+  bottom: "BatchNorm28"
+  top: "BatchNormA28"
 }
 layer {
   name: "Convolution28"
   type: "Convolution"
-  bottom: "BatchNorm28"
+  bottom: "BatchNormA28"
   top: "Convolution28"
   convolution_param {
     num_output: 16
@@ -1152,13 +1227,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA16"
+  type: "ReLU"
+  bottom: "BatchNorm30"
+  top: "BatchNormA30"
 }
 layer {
   name: "Convolution30"
   type: "Convolution"
-  bottom: "BatchNorm30"
+  bottom: "BatchNormA30"
   top: "Convolution30"
   convolution_param {
     num_output: 16
@@ -1232,13 +1312,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA17"
+  type: "ReLU"
+  bottom: "BatchNorm32"
+  top: "BatchNormA32"
 }
 layer {
   name: "Convolution32"
   type: "Convolution"
-  bottom: "BatchNorm32"
+  bottom: "BatchNormA32"
   top: "Convolution32"
   convolution_param {
     num_output: 16
@@ -1373,13 +1458,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA18"
+  type: "ReLU"
+  bottom: "BatchNorm35"
+  top: "BatchNormA35"
 }
 layer {
   name: "Convolution34"
   type: "Convolution"
-  bottom: "BatchNorm35"
+  bottom: "BatchNormA35"
   top: "Convolution34"
   convolution_param {
     num_output: 16
@@ -1453,13 +1543,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA19"
+  type: "ReLU"
+  bottom: "BatchNorm37"
+  top: "BatchNormA37"
 }
 layer {
   name: "Convolution36"
   type: "Convolution"
-  bottom: "BatchNorm37"
+  bottom: "BatchNormA37"
   top: "Convolution36"
   convolution_param {
     num_output: 16
@@ -1533,13 +1628,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA20"
+  type: "ReLU"
+  bottom: "BatchNorm39"
+  top: "BatchNormA39"
 }
 layer {
   name: "Convolution38"
   type: "Convolution"
-  bottom: "BatchNorm39"
+  bottom: "BatchNormA39"
   top: "Convolution38"
   convolution_param {
     num_output: 16
@@ -1613,13 +1713,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA21"
+  type: "ReLU"
+  bottom: "BatchNorm41"
+  top: "BatchNormA41"
 }
 layer {
   name: "Convolution40"
   type: "Convolution"
-  bottom: "BatchNorm41"
+  bottom: "BatchNormA41"
   top: "Convolution40"
   convolution_param {
     num_output: 16
@@ -1693,13 +1798,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA22"
+  type: "ReLU"
+  bottom: "BatchNorm43"
+  top: "BatchNormA43"
 }
 layer {
   name: "Convolution42"
   type: "Convolution"
-  bottom: "BatchNorm43"
+  bottom: "BatchNormA43"
   top: "Convolution42"
   convolution_param {
     num_output: 16
@@ -1773,13 +1883,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA23"
+  type: "ReLU"
+  bottom: "BatchNorm45"
+  top: "BatchNormA45"
 }
 layer {
   name: "Convolution44"
   type: "Convolution"
-  bottom: "BatchNorm45"
+  bottom: "BatchNormA45"
   top: "Convolution44"
   convolution_param {
     num_output: 16
@@ -1853,13 +1968,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA24"
+  type: "ReLU"
+  bottom: "BatchNorm47"
+  top: "BatchNormA47"
 }
 layer {
   name: "Convolution46"
   type: "Convolution"
-  bottom: "BatchNorm47"
+  bottom: "BatchNormA47"
   top: "Convolution46"
   convolution_param {
     num_output: 16
@@ -1933,13 +2053,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA25"
+  type: "ReLU"
+  bottom: "BatchNorm49"
+  top: "BatchNormA49"
 }
 layer {
   name: "Convolution48"
   type: "Convolution"
-  bottom: "BatchNorm49"
+  bottom: "BatchNormA49"
   top: "Convolution48"
   convolution_param {
     num_output: 16
@@ -2063,13 +2188,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA26"
+  type: "ReLU"
+  bottom: "BatchNorm52"
+  top: "BatchNormA52"
 }
 layer {
   name: "Convolution51"
   type: "Convolution"
-  bottom: "BatchNorm52"
+  bottom: "BatchNormA52"
   top: "Convolution51"
   convolution_param {
     num_output: 16
@@ -2143,13 +2273,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA27"
+  type: "ReLU"
+  bottom: "BatchNorm54"
+  top: "BatchNormA54"
 }
 layer {
   name: "Convolution53"
   type: "Convolution"
-  bottom: "BatchNorm54"
+  bottom: "BatchNormA54"
   top: "Convolution53"
   convolution_param {
     num_output: 16
@@ -2223,13 +2358,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA28"
+  type: "ReLU"
+  bottom: "BatchNorm56"
+  top: "BatchNormA56"
 }
 layer {
   name: "Convolution55"
   type: "Convolution"
-  bottom: "BatchNorm56"
+  bottom: "BatchNormA56"
   top: "Convolution55"
   convolution_param {
     num_output: 16
@@ -2303,13 +2443,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA29"
+  type: "ReLU"
+  bottom: "BatchNorm58"
+  top: "BatchNormA58"
 }
 layer {
   name: "Convolution57"
   type: "Convolution"
-  bottom: "BatchNorm58"
+  bottom: "BatchNormA58"
   top: "Convolution57"
   convolution_param {
     num_output: 16
@@ -2383,13 +2528,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA30"
+  type: "ReLU"
+  bottom: "BatchNorm60"
+  top: "BatchNormA60"
 }
 layer {
   name: "Convolution59"
   type: "Convolution"
-  bottom: "BatchNorm60"
+  bottom: "BatchNormA60"
   top: "Convolution59"
   convolution_param {
     num_output: 16
@@ -2463,13 +2613,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA31"
+  type: "ReLU"
+  bottom: "BatchNorm62"
+  top: "BatchNormA62"
 }
 layer {
   name: "Convolution61"
   type: "Convolution"
-  bottom: "BatchNorm62"
+  bottom: "BatchNormA62"
   top: "Convolution61"
   convolution_param {
     num_output: 16
@@ -2543,13 +2698,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA32"
+  type: "ReLU"
+  bottom: "BatchNorm64"
+  top: "BatchNormA64"
 }
 layer {
   name: "Convolution63"
   type: "Convolution"
-  bottom: "BatchNorm64"
+  bottom: "BatchNormA64"
   top: "Convolution63"
   convolution_param {
     num_output: 16
@@ -2623,13 +2783,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA33"
+  type: "ReLU"
+  bottom: "BatchNorm66"
+  top: "BatchNormA66"
 }
 layer {
   name: "Convolution65"
   type: "Convolution"
-  bottom: "BatchNorm66"
+  bottom: "BatchNormA66"
   top: "Convolution65"
   convolution_param {
     num_output: 16
@@ -2885,13 +3050,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA34"
+  type: "ReLU"
+  bottom: "BatchNorm71"
+  top: "BatchNormA71"
 }
 layer {
   name: "Convolution70"
   type: "Convolution"
-  bottom: "BatchNorm71"
+  bottom: "BatchNormA71"
   top: "Convolution70"
   convolution_param {
     num_output: 256
@@ -3026,13 +3196,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA35"
+  type: "ReLU"
+  bottom: "BatchNorm74"
+  top: "BatchNormA74"
 }
 layer {
   name: "Convolution73"
   type: "Convolution"
-  bottom: "BatchNorm74"
+  bottom: "BatchNormA74"
   top: "Convolution73"
   convolution_param {
     num_output: 128
@@ -3167,13 +3342,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA36"
+  type: "ReLU"
+  bottom: "BatchNorm77"
+  top: "BatchNormA77"
 }
 layer {
   name: "Convolution76"
   type: "Convolution"
-  bottom: "BatchNorm77"
+  bottom: "BatchNormA77"
   top: "Convolution76"
   convolution_param {
     num_output: 128
@@ -3324,13 +3504,18 @@ layer {
     bias_filler {
       type: "constant"
     }
-    fuse_type: FUSED_CONV_RELU
   }
+}
+layer {
+  name: "ReLUA37"
+  type: "ReLU"
+  bottom: "BatchNorm80"
+  top: "BatchNormA80"
 }
 layer {
   name: "Convolution79"
   type: "Convolution"
-  bottom: "BatchNorm80"
+  bottom: "BatchNormA80"
   top: "Convolution79"
   convolution_param {
     num_output: 128
