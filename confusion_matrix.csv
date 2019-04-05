@@ -1,0 +1,8 @@
+Image#,Image,GroundTruth_ file,"False Positive
+(Fan's Model)","False Positive
+(MobileNet SSD)","False Negative
+(Fan's Model)","False Negative
+(MobileNet SSD)"
+0,saveImg_1551996313_120.png,saveImg_1551996313_120.txt,0,0,0,0
+1,saveImg_1551996314_133.png,saveImg_1551996314_133.txt,0,0,0,0
+Average,,,0.0,0.0,0.0,0.0

@@ -27,33 +27,57 @@ def performAnnotations(path, prototxt1, model1, prototxt2, model2, validImageSha
         
             CLASSES1 = ["background","body","head"]
             CLASSES2 = ["background","head", "body","wb"]
+            selected1 = []
+            selected2 = []
+            selected = 'head'
             
-            blob = cv2.dnn.blobFromImage(cv2.resize(image, (800, 200)), 0.007843, (800, 200), 127.5)
-            boxes1 = runDetection(net1, CLASSES1, blob, defConfidence, image, showAnnotations)
-            boxes2 = runDetection(net2, CLASSES2, blob, defConfidence, image, showAnnotations)
-            print('\nBoxes1 - ')
-            print(*boxes1, sep = "\n")
-            print('\nBoxes2 - ')
-            print(*boxes2, sep = "\n")
-            #drawBoxes(boxes1,boxes2,image)
-            calcIOU(boxes1,boxes2,image)
+            blob1 = cv2.dnn.blobFromImage(cv2.resize(image, (800, 200)), 0.007843, (800, 200), 127.5)
+            boxes1 = runDetection(net1, CLASSES1, blob1, defConfidence, image, showAnnotations)
+            blob2 = cv2.dnn.blobFromImage(cv2.resize(image, (1400, 300)), 0.007843, (1400, 300), 127.5)
+            boxes2 = runDetection(net2, CLASSES2, blob2, defConfidence, image, showAnnotations)
+            for c in boxes1:
+                if c.pop(0) == 2:
+                    selected1.append(c)
+            for c in boxes2:
+                if c.pop(0) == 1:
+                    selected2.append(c)
+            
+#            print('\nBoxes1 - ')
+#            print(*selected1, sep = "\n")
+#            print('\nBoxes2 - ')
+#            print(*selected2, sep = "\n")
+            m=calcIOU(selected1,selected2,image)
+            drawBoxes(selected1,selected2,image,m, selected)
+
+            #scaled = cv2.resize(img, (0, 0), fx=0.5, fy=0.5)
+            scaled = cv2.resize(image, (1280, 540))
+            cv2.imshow("Annotation",scaled)
+            if cv2.waitKey(-1) == ord('q'): break
+
 #dumpToFile(outputFilename, boxes)
 
-def drawBoxes(boxes1,boxes2,img):
-    for boxA in boxes1:
-        cv2.rectangle(img,(boxA[0],boxA[1]),(boxA[2],boxA[3]),(0,255,0),5)
+def drawBoxes(boxes1,boxes2,img,m,selected):
+    
+    h,w = img.shape[:2]
+    for (boxA,iou) in zip(boxes1,m):
+        boxA = boxA * np.array([w, h, w, h])
+        x1,y1,x2,y2 = boxA.astype("int")
+        label = "{}: {:.2f}%".format(selected, iou * 100)
+        cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),5)
+        y = y1 - 15 if y1 - 15 > 15 else y1 + 15
+        cv2.putText(img, label, (x1, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,255,0), 2)
     
     for boxB in boxes2:
-        cv2.rectangle(img,(boxB[0],boxB[1]),(boxB[2],boxB[3]),(255,0,0),3)
-
-    cv2.imshow('annotated', img)
-    cv2.waitKey(200)
+        boxB = boxB * np.array([w, h, w, h])
+        x1,y1,x2,y2 = boxB.astype("int")
+        cv2.rectangle(img,(x1,y1),(x2,y2),(255,0,0),5)
 
 
 def calcIOU(boxes1, boxes2, image):
-
     idx = []
     m = []
+    list(boxes1)
+    list(boxes2)
     
     for boxA in boxes1:
         iou = []
@@ -83,12 +107,13 @@ def calcIOU(boxes1, boxes2, image):
 #        cv2.rectangle(image, (startX, startY), (endX, endY), COLORS[idx], 2)
 #        y = startY - 15 if startY - 15 > 15 else startY + 15
 #        cv2.putText(image, label, (startX, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[idx], 2)
-    print('\nIdx - ')
-    print(*idx, sep = ",")
-    print('\niou - ')
-    print(*m, sep = ",")
-    # return the intersection over union value
 
+#    print('\nIdx - ')
+#    print(*idx, sep = ",")
+#    print('\niou - ')
+#    print(*m, sep = ",")
+    # return the intersection over union value
+    return m
 
 
 def convertToYolo(box):
@@ -129,9 +154,10 @@ def runDetection(net, CLASSES, blob, defConfidence, image, showAnnotations):
         idx = int(detections[0, 0, i, 1])
         box = detections[0, 0, i, 3:7]
         (startX, startY, endX, endY) = box.astype("float")
-        #print('%d: class = %s, box = %s' % (i, CLASSES[idx], repr(box.astype('float'))))
-        if(CLASSES[idx] == "head"):
-            boxes.append([startX, startY, endX, endY])
+#        print('%d: class = %s, box = %s' % (i, CLASSES[idx], repr(box.astype('float'))))
+#        if(CLASSES[idx] == "head"):
+#            boxes.append([startX, startY, endX, endY])
+        boxes.append([idx, startX, startY, endX, endY])
 
         if showAnnotations:
             h,w = image.shape[:2]
